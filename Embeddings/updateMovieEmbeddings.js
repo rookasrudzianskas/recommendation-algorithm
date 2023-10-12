@@ -7,7 +7,12 @@ const getMovies = () => {
 
 const addMovieEmbedding = async (movie) => {
   const embedding = await generateEmbedding(movie.overview);
-  await supabase.from("movies").update({ embedding }).eq("id", movie.id);
+  await supabase
+    .from("movies")
+    .update({ embedding })
+    .eq("id",
+      movie.id
+    );
   console.log("Generated embeddings for movie: ", movie.id);
 };
 
