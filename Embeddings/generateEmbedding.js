@@ -15,5 +15,3 @@ export const generateEmbedding = async (text) => {
   // Extract the embedding output
   return Array.from(output.data);
 };
-
-console.log(await generateEmbedding("Hello world!"));
