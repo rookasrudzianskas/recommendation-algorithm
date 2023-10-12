@@ -18,7 +18,8 @@ const processAllMovies = async () => {
     return;
   }
   await Promise.all(movies.map((movie) => addMovieEmbedding(movie)));
-  // call again for the next batch of items
+
+  // Recursively call the function until all movies have been processed
   processAllMovies();
 };
 
