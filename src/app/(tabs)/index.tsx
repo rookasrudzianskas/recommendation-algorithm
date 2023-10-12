@@ -1,10 +1,12 @@
-import {View, Text, FlatList, ActivityIndicator} from 'react-native';
+import {View, Text, FlatList, ActivityIndicator, TextInput, Button, StyleSheet} from 'react-native';
 import {StatusBar} from "expo-status-bar";
-import {useEffect, useState} from "react";
+import React, {useEffect, useState} from "react";
 import {supabase} from "../../lib/supabase";
 import MovieItem from "../../components/MovieItem";
+
 export default function TabOneScreen() {
   const [movies, setMovies] = useState<any>([]);
+  const [query, setQuery] = useState('');
 
   useEffect(() => {
     const fetchMovies = async () => {
@@ -17,6 +19,10 @@ export default function TabOneScreen() {
     fetchMovies();
   }, []);
 
+  const onPress = async () => {
+
+  }
+
   if(movies.length <= 0) {
     return (
       <View className="h-screen flex items-center justify-center">
@@ -26,7 +32,18 @@ export default function TabOneScreen() {
   }
 
   return (
-    <View className="flex-1 bg-black">
+    <View className="flex-1 pt-16 bg-black">
+      <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+        <TextInput
+          placeholder="AI: Search for movies..."
+          placeholderTextColor={'gray'}
+          style={styles.input}
+          value={query}
+          onChangeText={setQuery}
+        />
+        <Button title="Search" onPress={onPress} />
+      </View>
+
       <FlatList
         data={movies}
         renderItem={MovieItem}
@@ -35,3 +52,15 @@ export default function TabOneScreen() {
     </View>
   );
 }
+
+const styles = StyleSheet.create({
+  input: {
+    flex: 1,
+    borderWidth: 1,
+    borderColor: 'gray',
+    padding: 10,
+    margin: 10,
+    borderRadius: 10,
+    color: 'gainsboro',
+  },
+});
