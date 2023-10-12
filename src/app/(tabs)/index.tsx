@@ -20,7 +20,18 @@ export default function TabOneScreen() {
   }, []);
 
   const onPress = async () => {
+    const { data } = await supabase.functions.invoke('embed', {
+      body: { input: query },
+    });
 
+    const { data: movies } = await supabase.rpc('match_movies', {
+      query_embedding: data.embedding, // Pass the embedding you want to compare
+      match_threshold: 0.78, // Choose an appropriate threshold for your data
+      match_count: 20, // Choose the number of matches
+    });
+    setMovies(movies);
+
+    setQuery('');
   }
 
   if(movies.length <= 0) {
