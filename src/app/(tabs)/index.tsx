@@ -1,7 +1,8 @@
-import {View, Text} from 'react-native';
+import {View, Text, FlatList} from 'react-native';
 import {StatusBar} from "expo-status-bar";
 import {useEffect, useState} from "react";
 import {supabase} from "../../lib/supabase";
+import MovieItem from "../../components/MovieItem";
 export default function TabOneScreen() {
   const [movies, setMovies] = useState<any>([]);
 
@@ -16,11 +17,13 @@ export default function TabOneScreen() {
     fetchMovies();
   }, []);
 
-  console.log(JSON.stringify(movies, null, 2));
 
   return (
-    <View className="flex-1 items-center justify-center bg-white">
-      <Text>Connect to Supabase</Text>
+    <View className="flex-1 bg-black">
+      <FlatList
+        data={movies}
+        renderItem={MovieItem}
+      />
       <StatusBar style="auto" />
     </View>
   );
