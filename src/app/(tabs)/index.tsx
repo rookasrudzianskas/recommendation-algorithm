@@ -10,13 +10,13 @@ export default function TabOneScreen() {
       const { data: movies } = await supabase
         .from("movies")
         .select("*")
-        // .range(0, 25);
+        .range(0, 25);
       setMovies(movies);
     };
     fetchMovies();
   }, []);
 
-  console.log(JSON.stringify(movies));
+  console.log(JSON.stringify(movies, null, 2));
 
   return (
     <View className="flex-1 items-center justify-center bg-white">
