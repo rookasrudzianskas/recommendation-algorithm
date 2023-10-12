@@ -10,6 +10,8 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@supabase/supabase-js": "^2.38.0",
     "@xenova/transformers": "^2.6.2"
-  }
+  },
+  "type": "module"
 }
