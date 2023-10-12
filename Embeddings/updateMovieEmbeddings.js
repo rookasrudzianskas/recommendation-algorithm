@@ -2,7 +2,7 @@ import { supabase } from './supabase.js';
 import { generateEmbedding } from './generateEmbedding.js';
 
 const getMovies = () => {
-  return supabase.from('movies').select('*').is('embedding', null);
+  return supabase.from('movies').select('*').is('embedding', null).range(0, 3);
 };
 
 const addMovieEmbedding = async (movie) => {
