@@ -26,7 +26,7 @@ const MovieDetails = () => {
       }
     };
     fetchMovie();
-  }, []);
+  }, [id]);
 
   useEffect(() => {
     if (!movie?.embedding) {
